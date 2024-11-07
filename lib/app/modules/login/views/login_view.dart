@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:myapp/app/controllers/auth_controller.dart';
 
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+  final cAuth = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +65,10 @@ class LoginView extends GetView<LoginController> {
             child: Column(
               children: [
                 TextFormField(
+                  controller: controller.cEmail,
                   decoration: InputDecoration(
-                      hintText: "Username",
-                      labelText: "Username",
+                      hintText: "Email",
+                      labelText: "Email",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
@@ -74,6 +76,7 @@ class LoginView extends GetView<LoginController> {
                   height: 10,
                 ),
                 TextFormField(
+                  controller: controller.cPass,
                   obscureText: true,
                   decoration: InputDecoration(
                       hintText: "Password",
@@ -87,7 +90,10 @@ class LoginView extends GetView<LoginController> {
                 Container(
                   width: double.infinity, // Mengisi lebar secara penuh
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      cAuth.login(
+                          controller.cEmail.text, controller.cPass.text);
+                    },
                     child: Text("LOGIN"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
