@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../controllers/auth_controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+  final cAuth = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,10 +14,12 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HomeView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            cAuth.logout();
+          },
+          child: Text("Logout"),
         ),
       ),
     );

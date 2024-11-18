@@ -6,7 +6,7 @@ import 'package:myapp/app/controllers/auth_controller.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  final cAuth = Get.find<AuthController>();
+  final cAuth = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
