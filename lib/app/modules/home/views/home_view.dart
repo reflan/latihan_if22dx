@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/app/controllers/auth_controller.dart';
 
+import '../../mahasiswa/views/mahasiswa_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  final cAuth = Get.lazyPut(()=>AuthController());
+  final cAuth = Get.lazyPut(() => AuthController());
   @override
   Widget build(BuildContext context) {
     return DashboardAdmin();
@@ -24,22 +25,10 @@ class _DashboardAdminState extends State<DashboardAdmin> {
   final cAuth = Get.find<AuthController>();
   int _index = 0;
   List<Map> _fragment = [
-    {
-      'title': 'Dashboard',
-      'view': 'Dashboard',
-    },
-    {
-      'title': 'Data Mahasiswa',
-      'view': 'Data Mahasiswa',
-    },
-    {
-      'title': 'Data Dosen',
-      'view': 'Data Dosen',
-    },
-    {
-      'title': 'Data Pegawai',
-      'view': 'Data Pegawai',
-    },
+    {'title': 'Dashboard', 'view': MahasiswaView()},
+    {'title': 'Data Mahasiswa', 'view': MahasiswaView()},
+    {'title': 'Data Dosen', 'view': MahasiswaView()},
+    {'title': 'Data Pegawai', 'view': MahasiswaView()},
   ];
 
   @override
@@ -59,7 +48,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
           color: Colors.white,
         ),
       ),
-      //body: _fragment[_index]['view'],
+      body: _fragment[_index]['view'],
     );
   }
 
