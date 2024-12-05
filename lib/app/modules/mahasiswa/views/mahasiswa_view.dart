@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/mahasiswa_controller.dart';
+import 'mahasiswa_update_view.dart';
 
 class MahasiswaView extends GetView<MahasiswaController> {
   void showOption(id) async {
@@ -11,11 +12,20 @@ class MahasiswaView extends GetView<MahasiswaController> {
       SimpleDialog(
         children: [
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Get.back();
+              Get.to(
+                MahasiswaUpdateView(),
+                arguments: id,
+              );
+            },
             title: Text('Update'),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Get.back();
+              controller.delete(id);
+            },
             title: Text('Delete'),
           ),
           ListTile(
